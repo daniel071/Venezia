@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Non Dimenticar.ogg-7723bcb27f810c6dc24b7e05a6c7297e.oggstr"
+
+[deps]
+
+source_file="res://Music/Non Dimenticar.ogg"
+dest_files=[ "res://.import/Non Dimenticar.ogg-7723bcb27f810c6dc24b7e05a6c7297e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

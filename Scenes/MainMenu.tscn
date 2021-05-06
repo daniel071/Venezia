@@ -1,74 +1,100 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Fonts/title.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Fonts/Roboto-Light.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=3]
-
-[sub_resource type="DynamicFont" id=2]
-size = 25
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=1]
-size = 24
-font_data = ExtResource( 2 )
+[ext_resource path="res://Fonts/subtitle.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/options.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Sprites/Background/blurred.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/UI/playButton.gd" type="Script" id=5]
 
 [node name="MainMenu" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 120
-custom_constants/margin_top = 80
+custom_constants/margin_top = 130
 custom_constants/margin_left = 120
 custom_constants/margin_bottom = 80
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 120.0
-margin_top = 80.0
+margin_top = 130.0
 margin_right = 904.0
 margin_bottom = 520.0
+alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_bottom = 440.0
+margin_left = 265.0
+margin_right = 519.0
+margin_bottom = 390.0
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
-custom_fonts/normal_font = ExtResource( 1 )
-text = "L'Italiano"
+[node name="Title" type="Label" parent="HBoxContainer/VBoxContainer"]
+margin_right = 254.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 1 )
+text = "Venezia"
+
+[node name="Subtitle" type="Label" parent="HBoxContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 254.0
+margin_bottom = 118.0
+custom_fonts/font = ExtResource( 2 )
+text = "By Daniel Pavela"
+align = 1
 
 [node name="MenuOptions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 4.0
-margin_bottom = 432.0
+margin_top = 122.0
+margin_right = 254.0
+margin_bottom = 390.0
 size_flags_vertical = 3
+custom_constants/separation = 10
 alignment = 1
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 210.0
-margin_bottom = 210.0
-custom_fonts/normal_font = SubResource( 2 )
-text = "Options"
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 214.0
-margin_bottom = 214.0
-custom_fonts/normal_font = SubResource( 2 )
+[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
+margin_top = 61.0
+margin_right = 254.0
+margin_bottom = 103.0
+custom_fonts/font = ExtResource( 3 )
 text = "Play"
+flat = true
+script = ExtResource( 5 )
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 218.0
-margin_bottom = 218.0
-custom_fonts/normal_font = SubResource( 2 )
+[node name="Options" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
+margin_top = 113.0
+margin_right = 254.0
+margin_bottom = 155.0
+custom_fonts/font = ExtResource( 3 )
+text = "Options"
+flat = true
+
+[node name="Exit" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
+margin_top = 165.0
+margin_right = 254.0
+margin_bottom = 207.0
+custom_fonts/font = ExtResource( 3 )
 text = "Exit"
+flat = true
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
-margin_top = 436.0
-margin_bottom = 436.0
-custom_fonts/normal_font = SubResource( 1 )
+[node name="Version" type="Label" parent="."]
+margin_left = 120.0
+margin_top = 130.0
+margin_right = 904.0
+margin_bottom = 520.0
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
 text = "v 0.1"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
-margin_top = 440.0
-margin_bottom = 440.0
-custom_fonts/normal_font = SubResource( 1 )
-text = "By Daniel Pavela"
+align = 2
+valign = 2

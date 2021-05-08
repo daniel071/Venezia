@@ -1,6 +1,8 @@
 extends Control
 
+var shouldContinue = false
 onready var textLabel = get_node("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Text")
+onready var continueLabel = get_node("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Continue")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,18 +15,54 @@ func arr_join(arr, separator = ""):
 	output = output.left( output.length() - separator.length() )
 	return output
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
 
-	var textString = "Ciao! Mi chiamo Marko."
+func _print_text(textString):
 	var textList = []
 	var complete = ""
 
+	continueLabel.hide()
+	
 	for i in textString:
 		textList.append(i)
 		complete = arr_join(textList, "")
 		textLabel.text = complete
 	
-		yield(get_tree().create_timer(0.1), "timeout")
+		yield(get_tree().create_timer(0.07), "timeout")
 		
-		
+	continueLabel.show()
+
+
+func _input(event):
+	if event.is_action_pressed("interact"):
+		shouldContinue = true
+
+
+func _ready():
+	show()
+	
+	_print_text("Ciao! Mi chiamo Marko! Benvenuto in Venezia! Io sono tuo guida!")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	_print_text("Io lavoro come capocuoco in Ristorante Due Fratelli.")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	#_print_text("You need to find a job in order to earn money. Once you've got money, you can spend it on lots of things!")
+	_print_text("Trovi i lavori a guadagnare soldi e poi usi di ristoranti e più!")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	_print_text("Andi Nord-Ovest, ci sono i lavori.")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	hide()

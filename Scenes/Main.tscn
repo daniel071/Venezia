@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://Fonts/title.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Fonts/options.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Scripts/UI/exitToTitle.gd" type="Script" id=10]
+[ext_resource path="res://Sprites/Characters/Marko/closeup.png" type="Texture" id=11]
+[ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=13]
+[ext_resource path="res://Fonts/subtitle.tres" type="DynamicFont" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "map1.jpg 0"
@@ -90,6 +94,10 @@
 4/shapes = [  ]
 4/z_index = 0
 
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 12 )
+
 [node name="TextureRect" type="TileMap"]
 mode = 2
 tile_set = SubResource( 1 )
@@ -151,23 +159,24 @@ margin_bottom = 520.0
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer"]
-margin_left = 274.0
-margin_right = 509.0
+margin_left = 294.0
+margin_right = 490.0
 margin_bottom = 420.0
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Title" type="Label" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 79.0
-margin_right = 235.0
-margin_bottom = 248.0
+margin_top = 122.0
+margin_right = 196.0
+margin_bottom = 205.0
 custom_fonts/font = ExtResource( 8 )
 text = "Pausa"
 
 [node name="Resume" type="Button" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 252.0
-margin_right = 235.0
-margin_bottom = 294.0
+pause_mode = 2
+margin_top = 209.0
+margin_right = 196.0
+margin_bottom = 251.0
 custom_fonts/font = ExtResource( 9 )
 text = "Riprendere"
 flat = true
@@ -176,9 +185,10 @@ __meta__ = {
 }
 
 [node name="Exit" type="Button" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 298.0
-margin_right = 235.0
-margin_bottom = 340.0
+pause_mode = 2
+margin_top = 255.0
+margin_right = 196.0
+margin_bottom = 297.0
 custom_fonts/font = ExtResource( 9 )
 text = "Uscita"
 flat = true
@@ -186,5 +196,80 @@ script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Dialogue" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Dialogue"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -162.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Dialogue/MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 162.0
+color = Color( 0, 0, 0, 0.513726 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Dialogue/MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 162.0
+custom_constants/separation = 155
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Dialogue/MarginContainer/HBoxContainer"]
+margin_bottom = 162.0
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Dialogue/MarginContainer/HBoxContainer/VBoxContainer2"]
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 11 )
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Dialogue/MarginContainer/HBoxContainer"]
+margin_left = 155.0
+margin_right = 1024.0
+margin_bottom = 162.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Dialogue/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 869.0
+margin_bottom = 162.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Text" type="Label" parent="CanvasLayer/Dialogue/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 849.0
+margin_bottom = 142.0
+custom_fonts/font = SubResource( 2 )
+text = "Ciao! Mi chiamo Marko!
+
+
+
+"
+
+[node name="Label" type="Label" parent="CanvasLayer/Dialogue/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 65.0
+margin_right = 849.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 14 )
+text = "Press E to continue"
+align = 2
 
 [connection signal="pressed" from="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Pause_pressed"]

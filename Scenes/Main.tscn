@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=13]
 [ext_resource path="res://Fonts/subtitle.tres" type="DynamicFont" id=14]
+[ext_resource path="res://Sprites/Characters/Giovanni/main.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/arrow.png" type="Texture" id=16]
+[ext_resource path="res://Scripts/arrow.gd" type="Script" id=17]
 
 [sub_resource type="TileSet" id=1]
 0/name = "map1.jpg 0"
@@ -94,9 +97,15 @@
 4/shapes = [  ]
 4/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 22.3115, 22.3915 )
+
 [sub_resource type="DynamicFont" id=2]
 size = 18
 font_data = ExtResource( 12 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 69.2009, 71.7921 )
 
 [node name="TextureRect" type="TileMap"]
 mode = 2
@@ -118,6 +127,16 @@ texture = ExtResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 current = true
 smoothing_enabled = true
+
+[node name="Area2D" type="Area2D" parent="KinematicBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D"]
+shape = SubResource( 4 )
+
+[node name="arrow" type="Sprite" parent="KinematicBody2D"]
+visible = false
+texture = ExtResource( 16 )
+script = ExtResource( 17 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -270,7 +289,18 @@ margin_top = 65.0
 margin_right = 849.0
 margin_bottom = 96.0
 custom_fonts/font = ExtResource( 14 )
-text = "Press E to continue"
+text = "Premi E tasto continuare"
 align = 2
 
+[node name="Giovanni" type="Sprite" parent="."]
+position = Vector2( -1913.62, -1304.55 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 15 )
+
+[node name="Area2D" type="Area2D" parent="Giovanni"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Giovanni/Area2D"]
+shape = SubResource( 3 )
+
 [connection signal="pressed" from="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Pause_pressed"]
+[connection signal="area_entered" from="Giovanni/Area2D" to="CanvasLayer/Dialogue" method="_giovanno_introduction"]

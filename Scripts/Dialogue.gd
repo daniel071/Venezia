@@ -1,8 +1,13 @@
 extends Control
 
 var shouldContinue = false
+var giovanniSprite = preload("res://Sprites/Characters/Giovanni/closeup.png")
+var markoSprite = preload("res://Sprites/Characters/Marko/closeup.png")
+
 onready var textLabel = get_node("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Text")
 onready var continueLabel = get_node("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Continue")
+onready var profileSprite = get_node("MarginContainer/HBoxContainer/VBoxContainer2/Sprite")
+onready var arrowPointer = get_node("../../KinematicBody2D/arrow")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -27,7 +32,7 @@ func _print_text(textString):
 		complete = arr_join(textList, "")
 		textLabel.text = complete
 	
-		yield(get_tree().create_timer(0.07), "timeout")
+		yield(get_tree().create_timer(0.05), "timeout")
 		
 	continueLabel.show()
 
@@ -60,6 +65,28 @@ func _ready():
 	shouldContinue = false
 	
 	_print_text("Andi Nord-Ovest, ci sono i lavori.")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	_print_text("Premi WASD tasti spostare.")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	
+	arrowPointer.show()
+	hide()
+
+
+func _giovanno_introduction(area):
+	arrowPointer.hide()
+	profileSprite.set_texture(giovanniSprite)
+	show()
+	
+	_print_text("Buongiorno! Mi chiamo Giovanno! ")
 	
 	while shouldContinue == false:
 		yield(get_tree().create_timer(0.25), "timeout")

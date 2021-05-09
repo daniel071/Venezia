@@ -3,6 +3,7 @@ extends Control
 var shouldContinue = false
 var giovanniSprite = preload("res://Sprites/Characters/Giovanni/closeup.png")
 var markoSprite = preload("res://Sprites/Characters/Marko/closeup.png")
+var trearchiSprite = preload("res://Sprites/Buildings/Tre Archi.png")
 var currentMoney = 20
 
 onready var textLabel = get_node("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Text")
@@ -11,6 +12,7 @@ onready var moneyLabel = get_node("../HBoxContainer/Money")
 onready var profileSprite = get_node("MarginContainer/HBoxContainer/VBoxContainer2/Sprite")
 onready var arrowPointer = get_node("../../KinematicBody2D/arrow")
 onready var purchasePopup = get_node("../purchasePopup")
+# onready var imageGallery = get_node("../imageGallery/Sprite")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -115,7 +117,7 @@ func _giovanno_introduction(area):
 
 func _on_trearchi_enter(area):
 	# TODO: Design character for restaruant owner
-	#profileSprite.set_texture(giovanniSprite)
+	profileSprite.set_texture(trearchiSprite)
 	
 	if int(moneyLabel.text) > 49:
 		purchasePopup.show()

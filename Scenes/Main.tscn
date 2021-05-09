@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://Fonts/Roboto-Bold.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://Sprites/Characters/Rosa/main.png" type="Texture" id=20]
 [ext_resource path="res://Scripts/UI/moneyDialogueNo.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/UI/moneyDialogSi.gd" type="Script" id=22]
+[ext_resource path="res://Sprites/Buildings/Tre Archi/trearchi1.jpg" type="Texture" id=23]
 
 [sub_resource type="TileSet" id=1]
 0/name = "map1.jpg 0"
@@ -108,11 +110,11 @@ extents = Vector2( 22.3115, 22.3915 )
 size = 18
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 35
 font_data = ExtResource( 19 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 69.2009, 71.7921 )
 
 [sub_resource type="RectangleShape2D" id=6]
@@ -308,7 +310,6 @@ text = "Premi E tasto continuare"
 align = 2
 
 [node name="purchasePopup" type="Control" parent="CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -339,42 +340,43 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/purchasePopup/MarginContainer/HBoxContainer"]
-margin_left = 79.0
-margin_right = 944.0
+margin_left = 210.0
+margin_right = 814.0
 margin_bottom = 600.0
 alignment = 1
 
 [node name="Title2" type="Label" parent="CanvasLayer/purchasePopup/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 197.0
-margin_right = 865.0
+margin_right = 604.0
 margin_bottom = 280.0
 custom_fonts/font = ExtResource( 8 )
-text = "Purchase?"
+text = "Compera?"
 align = 1
 valign = 1
 
 [node name="description" type="Label" parent="CanvasLayer/purchasePopup/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 284.0
-margin_right = 865.0
+margin_right = 604.0
 margin_bottom = 315.0
 custom_fonts/font = ExtResource( 14 )
-text = "Would you like to purchase a fantastic dinner at this fine restaruant? Costs $50."
+text = "Ti piacerebbe comprare un cena fantastico? Costo €50."
 align = 1
 valign = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/purchasePopup/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 319.0
-margin_right = 865.0
+margin_right = 604.0
 margin_bottom = 403.0
 custom_constants/separation = 0
 
 [node name="si" type="Button" parent="CanvasLayer/purchasePopup/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 pause_mode = 2
-margin_right = 865.0
+margin_right = 604.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 9 )
 text = "Si!"
 flat = true
+script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -382,7 +384,7 @@ __meta__ = {
 [node name="no" type="Button" parent="CanvasLayer/purchasePopup/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 pause_mode = 2
 margin_top = 42.0
-margin_right = 865.0
+margin_right = 604.0
 margin_bottom = 84.0
 custom_fonts/font = ExtResource( 9 )
 text = "No."
@@ -404,7 +406,7 @@ __meta__ = {
 [node name="MoneySymbol" type="Label" parent="CanvasLayer/HBoxContainer"]
 margin_right = 20.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "€"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -414,8 +416,56 @@ __meta__ = {
 margin_left = 24.0
 margin_right = 64.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="imageGallery" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blackoverlay3" type="ColorRect" parent="CanvasLayer/imageGallery"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.513726 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="Control" parent="CanvasLayer/imageGallery"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/imageGallery/Container"]
+texture = ExtResource( 23 )
+
+[node name="next" type="Button" parent="CanvasLayer/imageGallery"]
+pause_mode = 2
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -158.0
+margin_top = -62.0
+custom_fonts/font = ExtResource( 9 )
+text = "Prossimo"
+flat = true
+align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -428,7 +478,7 @@ texture = ExtResource( 15 )
 [node name="Area2D" type="Area2D" parent="Giovanni"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Giovanni/Area2D"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="TreArchi" type="Sprite" parent="."]
 position = Vector2( 1910.94, 1549.69 )
@@ -450,5 +500,6 @@ texture = ExtResource( 20 )
 shape = SubResource( 7 )
 
 [connection signal="pressed" from="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Pause_pressed"]
+[connection signal="pressed" from="CanvasLayer/imageGallery/next" to="CanvasLayer/purchasePopup/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/si" method="_on_next_pressed"]
 [connection signal="area_entered" from="Giovanni/Area2D" to="CanvasLayer/Dialogue" method="_giovanno_introduction"]
 [connection signal="area_entered" from="TreArchi/Area2D" to="CanvasLayer/Dialogue" method="_on_trearchi_enter"]

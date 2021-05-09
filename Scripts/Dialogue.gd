@@ -3,11 +3,14 @@ extends Control
 var shouldContinue = false
 var giovanniSprite = preload("res://Sprites/Characters/Giovanni/closeup.png")
 var markoSprite = preload("res://Sprites/Characters/Marko/closeup.png")
+var currentMoney = 20
 
 onready var textLabel = get_node("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Text")
 onready var continueLabel = get_node("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Continue")
+onready var moneyLabel = get_node("../HBoxContainer/Money")
 onready var profileSprite = get_node("MarginContainer/HBoxContainer/VBoxContainer2/Sprite")
 onready var arrowPointer = get_node("../../KinematicBody2D/arrow")
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -98,6 +101,13 @@ func _giovanno_introduction(area):
 		yield(get_tree().create_timer(0.25), "timeout")
 	shouldContinue = false
 	
-	_print_text("Bisogniamo dipendente nuovo, tu sarai perfetto!")
+	_print_text("Hai €100, io dare più tardi.")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	currentMoney = int(moneyLabel.text) + 100
+	moneyLabel.text = String(currentMoney)
 	
 	hide()

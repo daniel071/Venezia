@@ -81,6 +81,12 @@ func _ready():
 		yield(get_tree().create_timer(0.25), "timeout")
 	shouldContinue = false
 	
+	_print_text("Premi 'SHIFT' tasti andare più veloce.")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
 	
 	arrowPointer.show()
 	hide()
@@ -113,13 +119,37 @@ func _giovanno_introduction(area):
 	moneyLabel.text = String(currentMoney)
 	
 	hide()
-
+	
+	yield(get_tree().create_timer(4), "timeout")
+	
+	
+	profileSprite.set_texture(markoSprite)
+	show()
+	# "Checkout one fantastic restaruant, it's fantastic!"
+	_print_text("Dovresti controlli un ristorante, è fantastico!")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	# "Follow the arrow"
+	_print_text("Seguire la freccia.")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	arrowPointer.pointTo = get_node("../../TreArchi")
+	arrowPointer.show()
+	hide()
+	
 
 func _on_trearchi_enter(area):
 	# TODO: Design character for restaruant owner
 	profileSprite.set_texture(trearchiSprite)
 	
 	if int(moneyLabel.text) > 49:
+		arrowPointer.hide()
 		purchasePopup.show()
 		
 	else:

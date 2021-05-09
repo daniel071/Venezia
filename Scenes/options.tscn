@@ -4,9 +4,9 @@
 [ext_resource path="res://Fonts/subtitle.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Fonts/options.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Sprites/Background/blurred.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/UI/playButton.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/UI/Exit.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/UI/optionsButton.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/UI/exitToTitle.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/UI/musicButton.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/UI/fullScreen.gd" type="Script" id=7]
 
 [node name="MainMenu" type="MarginContainer"]
 anchor_right = 1.0
@@ -38,59 +38,54 @@ margin_bottom = 520.0
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 265.0
-margin_right = 519.0
+margin_left = 277.0
+margin_right = 506.0
 margin_bottom = 390.0
 alignment = 1
 
 [node name="Title" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_right = 254.0
+margin_right = 229.0
 margin_bottom = 83.0
 custom_fonts/font = ExtResource( 1 )
-text = "Venezia"
-
-[node name="Subtitle" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_top = 87.0
-margin_right = 254.0
-margin_bottom = 118.0
-custom_fonts/font = ExtResource( 2 )
-text = "Di Daniel Pavela"
+text = "Scelti"
 align = 1
 
 [node name="MenuOptions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 122.0
-margin_right = 254.0
+margin_top = 87.0
+margin_right = 229.0
 margin_bottom = 390.0
 size_flags_vertical = 3
 custom_constants/separation = 10
 alignment = 1
 
-[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 61.0
-margin_right = 254.0
-margin_bottom = 103.0
+[node name="musicCheck" type="CheckBox" parent="HBoxContainer/VBoxContainer/MenuOptions"]
+margin_top = 76.0
+margin_right = 229.0
+margin_bottom = 120.0
 custom_fonts/font = ExtResource( 3 )
-text = "Giocare"
+text = "Musica"
 flat = true
-script = ExtResource( 5 )
+align = 1
+script = ExtResource( 6 )
 
-[node name="Options" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 113.0
-margin_right = 254.0
-margin_bottom = 155.0
+[node name="screenCheck" type="CheckBox" parent="HBoxContainer/VBoxContainer/MenuOptions"]
+margin_top = 130.0
+margin_right = 229.0
+margin_bottom = 174.0
 custom_fonts/font = ExtResource( 3 )
-text = "Scelti"
+text = "Schermo pieno"
 flat = true
+align = 1
 script = ExtResource( 7 )
 
 [node name="Exit" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 165.0
-margin_right = 254.0
-margin_bottom = 207.0
+margin_top = 184.0
+margin_right = 229.0
+margin_bottom = 226.0
 custom_fonts/font = ExtResource( 3 )
 text = "Uscita"
 flat = true
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 
 [node name="Version" type="Label" parent="."]
 margin_left = 120.0

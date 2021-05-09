@@ -86,10 +86,18 @@ func _giovanno_introduction(area):
 	profileSprite.set_texture(giovanniSprite)
 	show()
 	
-	_print_text("Buongiorno! Mi chiamo Giovanno! ")
+	_print_text("Buongiorno! Mi chiamo Giovanno! Io sono direttore di San Giuliano Venice.")
 	
 	while shouldContinue == false:
 		yield(get_tree().create_timer(0.25), "timeout")
 	shouldContinue = false
+	
+	_print_text("Bisogniamo dipendente nuovo, tu sarai perfetto!")
+	
+	while shouldContinue == false:
+		yield(get_tree().create_timer(0.25), "timeout")
+	shouldContinue = false
+	
+	_print_text("Bisogniamo dipendente nuovo, tu sarai perfetto!")
 	
 	hide()

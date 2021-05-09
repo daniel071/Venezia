@@ -10,7 +10,7 @@ onready var continueLabel = get_node("MarginContainer/HBoxContainer/VBoxContaine
 onready var moneyLabel = get_node("../HBoxContainer/Money")
 onready var profileSprite = get_node("MarginContainer/HBoxContainer/VBoxContainer2/Sprite")
 onready var arrowPointer = get_node("../../KinematicBody2D/arrow")
-
+onready var purchasePopup = get_node("../purchasePopup")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -111,3 +111,21 @@ func _giovanno_introduction(area):
 	moneyLabel.text = String(currentMoney)
 	
 	hide()
+
+
+func _on_trearchi_enter(area):
+	# TODO: Design character for restaruant owner
+	#profileSprite.set_texture(giovanniSprite)
+	
+	if int(moneyLabel.text) > 49:
+		purchasePopup.show()
+		
+	else:
+		show()
+		_print_text("Scusa, ma hai bisogni €50 entrare.")
+		
+		while shouldContinue == false:
+			yield(get_tree().create_timer(0.25), "timeout")
+		shouldContinue = false
+		
+		hide()

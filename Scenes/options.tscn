@@ -94,6 +94,6 @@ margin_right = 904.0
 margin_bottom = 520.0
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 2 )
-text = "Versione 0.7"
+text = "Versione 0.8"
 align = 2
 valign = 2

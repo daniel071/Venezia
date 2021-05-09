@@ -22,6 +22,7 @@ func _pressed():
 
 
 func _on_next_pressed():
+	imageGallerySprite.set_texture(imgOne)
 	galleryID = galleryID + 1
 	
 	if galleryID == 2:

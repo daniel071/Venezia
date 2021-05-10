@@ -108,7 +108,7 @@
 4/shapes = [  ]
 4/z_index = 0
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
@@ -126,24 +126,24 @@ animations = [ {
 "speed": 3.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 22.3115, 22.3915 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 18
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 35
 font_data = ExtResource( 19 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 69.2009, 71.7921 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 111.673, 111.607 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 67.6268, 64.7179 )
 
 [node name="TextureRect" type="TileMap"]
@@ -161,7 +161,7 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="KinematicBody2D"]
 scale = Vector2( 2, 2 )
-frames = SubResource( 8 )
+frames = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 current = true
@@ -170,7 +170,7 @@ smoothing_enabled = true
 [node name="Area2D" type="Area2D" parent="KinematicBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="arrow" type="Sprite" parent="KinematicBody2D"]
 visible = false
@@ -179,81 +179,6 @@ script = ExtResource( 17 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
-
-[node name="Pause" type="Control" parent="CanvasLayer"]
-pause_mode = 2
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Blackoverlay" type="ColorRect" parent="CanvasLayer/Pause"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.513726 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Pause"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 120
-custom_constants/margin_top = 100
-custom_constants/margin_left = 120
-custom_constants/margin_bottom = 80
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Pause/MarginContainer"]
-margin_left = 120.0
-margin_top = 100.0
-margin_right = 904.0
-margin_bottom = 520.0
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer"]
-margin_left = 294.0
-margin_right = 490.0
-margin_bottom = 420.0
-size_flags_vertical = 3
-alignment = 1
-
-[node name="Title" type="Label" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 122.0
-margin_right = 196.0
-margin_bottom = 205.0
-custom_fonts/font = ExtResource( 8 )
-text = "Pausa"
-
-[node name="Resume" type="Button" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer"]
-pause_mode = 2
-margin_top = 209.0
-margin_right = 196.0
-margin_bottom = 251.0
-custom_fonts/font = ExtResource( 9 )
-text = "Riprendere"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Exit" type="Button" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer"]
-pause_mode = 2
-margin_top = 255.0
-margin_right = 196.0
-margin_bottom = 297.0
-custom_fonts/font = ExtResource( 9 )
-text = "Uscita"
-flat = true
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Dialogue" type="Control" parent="CanvasLayer"]
 visible = false
@@ -315,7 +240,7 @@ margin_left = 20.0
 margin_top = 20.0
 margin_right = 849.0
 margin_bottom = 142.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Ciao! Mi chiamo Marko!
 
 
@@ -430,7 +355,7 @@ __meta__ = {
 [node name="MoneySymbol" type="Label" parent="CanvasLayer/HBoxContainer"]
 margin_right = 20.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "€"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -440,7 +365,7 @@ __meta__ = {
 margin_left = 24.0
 margin_right = 64.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "20"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -494,6 +419,81 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Pause" type="Control" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blackoverlay" type="ColorRect" parent="CanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.513726 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 120
+custom_constants/margin_top = 100
+custom_constants/margin_left = 120
+custom_constants/margin_bottom = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Pause/MarginContainer"]
+margin_left = 120.0
+margin_top = 100.0
+margin_right = 904.0
+margin_bottom = 520.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer"]
+margin_left = 294.0
+margin_right = 490.0
+margin_bottom = 420.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 122.0
+margin_right = 196.0
+margin_bottom = 205.0
+custom_fonts/font = ExtResource( 8 )
+text = "Pausa"
+
+[node name="Resume" type="Button" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer"]
+pause_mode = 2
+margin_top = 209.0
+margin_right = 196.0
+margin_bottom = 251.0
+custom_fonts/font = ExtResource( 9 )
+text = "Riprendere"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer"]
+pause_mode = 2
+margin_top = 255.0
+margin_right = 196.0
+margin_bottom = 297.0
+custom_fonts/font = ExtResource( 9 )
+text = "Uscita"
+flat = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Giovanni" type="Sprite" parent="."]
 position = Vector2( -1913.62, -1304.55 )
 scale = Vector2( 2, 2 )
@@ -502,7 +502,7 @@ texture = ExtResource( 15 )
 [node name="Area2D" type="Area2D" parent="Giovanni"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Giovanni/Area2D"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="TreArchi" type="Sprite" parent="."]
 position = Vector2( 1910.94, 1549.69 )
@@ -511,7 +511,7 @@ texture = ExtResource( 18 )
 [node name="Area2D" type="Area2D" parent="TreArchi"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreArchi/Area2D"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="Rosa" type="Sprite" parent="."]
 position = Vector2( 2033.68, 2246.08 )
@@ -521,9 +521,9 @@ texture = ExtResource( 20 )
 [node name="Area2D" type="Area2D" parent="Rosa"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rosa/Area2D"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
-[connection signal="pressed" from="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Pause_pressed"]
 [connection signal="pressed" from="CanvasLayer/imageGallery/next" to="CanvasLayer/purchasePopup/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/si" method="_on_next_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Pause_pressed"]
 [connection signal="area_entered" from="Giovanni/Area2D" to="CanvasLayer/Dialogue" method="_giovanno_introduction"]
 [connection signal="area_entered" from="TreArchi/Area2D" to="CanvasLayer/Dialogue" method="_on_trearchi_enter"]

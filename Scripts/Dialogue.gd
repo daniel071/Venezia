@@ -1,6 +1,9 @@
 extends Control
 
+var canInteract = false
+var canOpenDialog = false
 var shouldContinue = false
+var giovanniInteracted = false
 var giovanniSprite = preload("res://Sprites/Characters/Giovanni/closeup.png")
 var markoSprite = preload("res://Sprites/Characters/Marko/closeup.png")
 var trearchiSprite = preload("res://Sprites/Buildings/Tre Archi.png")
@@ -27,6 +30,7 @@ func arr_join(arr, separator = ""):
 
 
 func _print_text(textString):
+	canInteract = false
 	var textList = []
 	var complete = ""
 
@@ -40,10 +44,11 @@ func _print_text(textString):
 		yield(get_tree().create_timer(0.05), "timeout")
 		
 	continueLabel.show()
+	canInteract = true
 
 
 func _input(event):
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and canInteract == true:
 		shouldContinue = true
 
 
@@ -90,74 +95,85 @@ func _ready():
 	
 	arrowPointer.show()
 	hide()
+	canOpenDialog = true
 
 
 func _giovanno_introduction(area):
-	arrowPointer.hide()
-	profileSprite.set_texture(giovanniSprite)
-	show()
-	
-	_print_text("Buongiorno! Mi chiamo Giovanno! Io sono direttore di San Giuliano Venice.")
-	
-	while shouldContinue == false:
-		yield(get_tree().create_timer(0.25), "timeout")
-	shouldContinue = false
-	
-	_print_text("Bisogniamo dipendente nuovo, tu sarai perfetto!")
-	
-	while shouldContinue == false:
-		yield(get_tree().create_timer(0.25), "timeout")
-	shouldContinue = false
-	
-	_print_text("Hai €100, io dare più tardi.")
-	
-	while shouldContinue == false:
-		yield(get_tree().create_timer(0.25), "timeout")
-	shouldContinue = false
-	
-	currentMoney = int(moneyLabel.text) + 100
-	moneyLabel.text = String(currentMoney)
-	
-	hide()
-	
-	yield(get_tree().create_timer(4), "timeout")
-	
-	
-	profileSprite.set_texture(markoSprite)
-	show()
-	# "Checkout one fantastic restaruant, it's fantastic!"
-	_print_text("Dovresti controlli un ristorante, è fantastico!")
-	
-	while shouldContinue == false:
-		yield(get_tree().create_timer(0.25), "timeout")
-	shouldContinue = false
-	
-	# "Follow the arrow"
-	_print_text("Seguire la freccia.")
-	
-	while shouldContinue == false:
-		yield(get_tree().create_timer(0.25), "timeout")
-	shouldContinue = false
-	
-	arrowPointer.pointTo = get_node("../../TreArchi")
-	arrowPointer.show()
-	hide()
-	
-
-func _on_trearchi_enter(area):
-	# TODO: Design character for restaruant owner
-	profileSprite.set_texture(trearchiSprite)
-	
-	if int(moneyLabel.text) > 49:
+	if canOpenDialog == true:
+		canOpenDialog = false
 		arrowPointer.hide()
-		purchasePopup.show()
-		
-	else:
+		profileSprite.set_texture(giovanniSprite)
 		show()
-		_print_text("Scusa, ma hai bisogni €50 entrare.")
+		
+		if giovanniInteracted == true:
+			_print_text("Seguire la freccia.")
+		else:
+			_print_text("Buongiorno! Mi chiamo Giovanno! Io sono direttore di San Giuliano Venice.")
+			
+			while shouldContinue == false:
+				yield(get_tree().create_timer(0.25), "timeout")
+			shouldContinue = false
+			
+			_print_text("Bisogniamo dipendente nuovo, tu sarai perfetto!")
+			
+			while shouldContinue == false:
+				yield(get_tree().create_timer(0.25), "timeout")
+			shouldContinue = false
+			
+			_print_text("Hai €100, io dare più tardi.")
+			
+			while shouldContinue == false:
+				yield(get_tree().create_timer(0.25), "timeout")
+			shouldContinue = false
+			
+			currentMoney = int(moneyLabel.text) + 100
+			moneyLabel.text = String(currentMoney)
+			
+			hide()
+			
+			yield(get_tree().create_timer(4), "timeout")
+			
+			
+			profileSprite.set_texture(markoSprite)
+			show()
+			# "Checkout one fantastic restaruant, it's fantastic!"
+			_print_text("Dovresti controlli un ristorante, è fantastico!")
+			
+			while shouldContinue == false:
+				yield(get_tree().create_timer(0.25), "timeout")
+			shouldContinue = false
+			
+			# "Follow the arrow"
+			_print_text("Seguire la freccia.")
+			
+			giovanniInteracted = true
 		
 		while shouldContinue == false:
 			yield(get_tree().create_timer(0.25), "timeout")
 		shouldContinue = false
 		
+		arrowPointer.pointTo = get_node("../../TreArchi")
+		arrowPointer.show()
 		hide()
+		
+		canOpenDialog = true
+	
+
+func _on_trearchi_enter(area):
+	if canOpenDialog == true:
+		if int(moneyLabel.text) > 49:
+			arrowPointer.hide()
+			purchasePopup.show()
+			
+		else:
+			profileSprite.set_texture(trearchiSprite)
+			canOpenDialog = false
+			show()
+			_print_text("Scusa, ma hai bisogni €50 entrare.")
+			
+			while shouldContinue == false:
+				yield(get_tree().create_timer(0.25), "timeout")
+			shouldContinue = false
+			
+			hide()
+			canOpenDialog = true
